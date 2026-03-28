@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Profesionales | Contactos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            background-attachment: fixed;
+            color: #f8fafc;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(120,119,198,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(15,15,35,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        .logo {
+    line-height: 1.2;
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+    border: 1px solid rgba(255, 204, 0, 0.3);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+        .logo span {
+            background: linear-gradient(135deg, #facc15, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo small {
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .nav-menu li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-menu li a:hover {
+            color: #f8fafc;
+            background: rgba(250,204,21,0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(250,204,21,0.3);
+        }
+
+        .nav-menu li a.active {
+            background: linear-gradient(135deg, rgba(250,204,21,0.2), rgba(251,191,36,0.2));
+            color: #facc15;
+            box-shadow: 0 5px 20px rgba(250,204,21,0.3);
+        }
+
+        .nav-menu li a i {
+            font-size: 16px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #f8fafc;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .contacto-hero {
+            padding: 80px 0 60px 0;
+            text-align: center;
+        }
+
+        .contacto-hero-box {
+            background: rgba(26,26,46,0.92);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 28px;
+            padding: 50px 40px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contacto-hero-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #facc15, #fbbf24, #f59e0b, #facc15);
+            animation: shimmer 4s infinite;
+            background-size: 200% 100%;
+        }
+
+        .productos-hero-box h1 {
+    font-size: 48px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+        .contacto-hero-box p {
+            font-size: 20px;
+            color: #cbd5e1;
+            max-width: 820px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        section {
+            padding: 20px 0 70px 0;
+        }
+
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .contacto-card {
+            background: rgba(30,30,50,0.92);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(250,204,21,0.2);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .contacto-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #facc15, #fbbf24, #f59e0b);
+            animation: shimmer 3s infinite;
+            background-size: 200% 100%;
+        }
+
+        .contacto-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 40px 90px rgba(250,204,21,0.22);
+            border-color: rgba(250,204,21,0.45);
+        }
+
+        .card-header {
+            padding: 30px 35px 22px 35px;
+            background: linear-gradient(135deg, rgba(250,204,21,0.08), rgba(251,191,36,0.05));
+            border-bottom: 1px solid rgba(250,204,21,0.15);
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            color: #f8fafc;
+            font-size: 28px;
+            font-weight: 800;
+            flex-wrap: wrap;
+        }
+
+        .card-title i {
+            color: #facc15;
+            font-size: 32px;
+            background: rgba(250,204,21,0.2);
+            padding: 10px;
+            border-radius: 50%;
+        }
+
+        .card-body {
+            padding: 35px;
+        }
+
+        .card-body > p {
+            color: #cbd5e1;
+            margin-bottom: 22px;
+        }
+
+        .info-box {
+            background: rgba(250,204,21,0.1);
+            border: 1px solid rgba(250,204,21,0.25);
+            border-radius: 18px;
+            padding: 18px 20px;
+            margin-bottom: 16px;
+            color: #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .info-box:hover {
+            transform: translateX(8px);
+            box-shadow: 0 12px 30px rgba(250,204,21,0.16);
+        }
+
+        .info-box strong {
+            display: block;
+            color: #facc15;
+            margin-bottom: 6px;
+            font-size: 16px;
+        }
+
+        .extra {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .extra-card {
+            background: rgba(40,40,60,0.8);
+            border: 1px solid rgba(250,204,21,0.2);
+            border-radius: 18px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .extra-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 35px rgba(250,204,21,0.16);
+        }
+
+        .extra-card h3 {
+            color: #f8fafc;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .extra-card p {
+            color: #94a3b8;
+            margin: 0;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 18px;
+        }
+
+        .fila-doble {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 18px 22px;
+            border-radius: 18px;
+            border: 2px solid rgba(250,204,21,0.25);
+            background: rgba(40,40,60,0.85);
+            color: #f8fafc;
+            outline: none;
+            font-size: 16px;
+            transition: all 0.4s ease;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: #facc15;
+            box-shadow: 0 0 0 5px rgba(250,204,21,0.2);
+            transform: translateY(-3px);
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .btn-action {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #facc15 0%, #fbbf24 50%, #f59e0b 100%);
+            color: #111827;
+            box-shadow: 0 6px 20px rgba(250,204,21,0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(250,204,21,0.6);
+        }
+
+        .mensaje-box {
+            margin-top: 18px;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+        }
+
+        footer {
+            background: rgba(15,15,35,0.95);
+            backdrop-filter: blur(20px);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .footer-grid h3 {
+            color: #facc15;
+            margin-bottom: 15px;
+        }
+
+        .footer-grid h4 {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .footer-grid p,
+        .footer-grid a {
+            color: #94a3b8;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .menu-mobile-open {
+            display: flex !important;
+            position: absolute;
+            top: 100%;
+            right: 20px;
+            left: 20px;
+            flex-direction: column;
+            background: rgba(15,15,35,0.98);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+        }
+
+        .menu-mobile-open li a {
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 200% 0; }
+            50% { background-position: 0 0; }
+        }
+
+        @media (max-width: 900px) {
+            .contacto-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contacto-hero-box h1 {
+                font-size: 38px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            nav {
+                position: relative;
+            }
+
+            .fila-doble {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contenedor {
+                padding: 0 15px;
+            }
+
+            .contacto-hero-box {
+                padding: 35px 20px;
+            }
+
+            .contacto-hero-box h1 {
+                font-size: 28px;
+            }
+
+            .card-body {
+                padding: 25px 20px;
+            }
+
+            .card-title {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="contenedor">
+        <a href="index.html" class="logo">
+            Servicios <span>Profesionales</span><br>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+    <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Inicio</a></li>
+    <li><a href="clientes.html" class="nav-link"><i class="fas fa-users"></i> Clientes</a></li>
+    <li><a href="productos.html" class="nav-link"><i class="fas fa-box"></i> Productos</a></li>
+    <li><a href="servicios.html" class="nav-link"><i class="fas fa-cogs"></i> Servicios</a></li>
+    <li><a href="contactos.html" class="nav-link"><i class="fas fa-envelope"></i> Contactos</a></li>
+    <li><a href="factura.html" class="nav-link"><i class="fas fa-file-invoice-dollar"></i> Factura</a></li>
+</ul>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+</header>
+
+<section class="contacto-hero">
+    <div class="contenedor">
+        <div class="contacto-hero-box">
+            <h1>
+                <i class="fas fa-envelope-open-text fa-2x"></i>
+                Contáctanos
+            </h1>
+            <p>
+                Un espacio moderno y profesional para facilitar la comunicación con la empresa,
+                presentar los canales de atención y mejorar la imagen del sitio web.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="contacto-grid">
+        <div class="contacto-card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-address-book"></i>
+                    <span>Información de Contacto</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p>
+                    Puedes utilizar este espacio para presentar los canales principales de atención
+                    y ubicar a la empresa dentro del prototipo.
+                </p>
+
+                <div class="info-box">
+                    <strong>📍 Dirección</strong>
+                    Avenida Central, David, Chiriquí, Panamá
+                </div>
+
+                <div class="info-box">
+                    <strong>📞 Teléfono</strong>
+                    +507 6000-0000
+                </div>
+
+                <div class="info-box">
+                    <strong>✉️ Correo electrónico</strong>
+                    contacto@serviciosprofesionales.com
+                </div>
+
+                <div class="info-box">
+                    <strong>🕒 Horario de atención</strong>
+                    Lunes a viernes de 8:00 a.m. a 5:00 p.m.
+                </div>
+
+                <div class="extra">
+                    <div class="extra-card">
+                        <h3>Respuesta rápida</h3>
+                        <p>Ideal para solicitudes iniciales y consultas sobre servicios.</p>
+                    </div>
+                    <div class="extra-card">
+                        <h3>Atención formal</h3>
+                        <p>Sección útil para mostrar profesionalismo en la presentación.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contacto-card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Formulario de Contacto</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <p>
+                    Este formulario funciona como prototipo interactivo y ayuda a que el sitio se sienta
+                    más completo y visualmente profesional.
+                </p>
+
+                <form onsubmit="enviarMensaje(event)">
+                    <div class="form-grid">
+                        <div class="fila-doble">
+                            <input class="form-input" type="text" id="nombre" placeholder="👤 Nombre completo">
+                            <input class="form-input" type="email" id="correo" placeholder="📧 Correo electrónico">
+                        </div>
+
+                        <div class="fila-doble">
+                            <input class="form-input" type="text" id="telefono" placeholder="📱 Teléfono">
+                            <select class="form-select" id="asunto">
+                                <option value="">Seleccione un asunto</option>
+                                <option>Información general</option>
+                                <option>Solicitar producto</option>
+                                <option>Solicitar servicio</option>
+                                <option>Soporte</option>
+                            </select>
+                        </div>
+
+                        <textarea class="form-textarea" id="mensajeTexto" placeholder="📝 Escriba su mensaje"></textarea>
+
+                        <button type="submit" class="btn-action btn-primary">
+                            <i class="fas fa-paper-plane"></i> Enviar mensaje
+                        </button>
+                    </div>
+                </form>
+
+                <div id="mensaje" class="mensaje-box"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="contenedor footer-grid">
+        <div>
+            <h3>SUCESOS y MÁS</h3>
+            <p>Canales de contacto y atención presentados con un diseño claro, elegante y moderno.</p>
+        </div>
+
+        <div>
+            <h4>Ubicación</h4>
+            <p>Avenida Central<br>David, Chiriquí<br>Panamá</p>
+        </div>
+
+        <div>
+            <h4>Contacto</h4>
+            <p><i class="fas fa-phone"></i> +507 6000-0000</p>
+            <p><i class="fas fa-envelope"></i> contacto@serviciosprofesionales.com</p>
+        </div>
+
+        <div>
+            <h4>Navegación</h4>
+            <p><a href="productos.html">Productos</a></p>
+            <p><a href="servicios.html">Servicios</a></p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        &copy; 2026 SUCESOS y MÁS - Todos los derechos reservados | Desarrollado con ❤️ en David, Chiriquí
+    </div>
+</footer>
+
+<script>
+    function mostrarMensaje(texto, tipo = "ok") {
+        const mensaje = document.getElementById("mensaje");
+        mensaje.style.display = "block";
+        mensaje.textContent = texto;
+
+        if (tipo === "ok") {
+            mensaje.style.background = "rgba(34,197,94,0.2)";
+            mensaje.style.color = "#22c55e";
+            mensaje.style.border = "1px solid rgba(34,197,94,0.3)";
+        } else {
+            mensaje.style.background = "rgba(239,68,68,0.18)";
+            mensaje.style.color = "#f87171";
+            mensaje.style.border = "1px solid rgba(239,68,68,0.32)";
+        }
+    }
+
+    function enviarMensaje(e) {
+        e.preventDefault();
+
+        const nombre = document.getElementById("nombre").value.trim();
+        const correo = document.getElementById("correo").value.trim();
+        const asunto = document.getElementById("asunto").value;
+        const mensajeTexto = document.getElementById("mensajeTexto").value.trim();
+
+        if (nombre === "" || correo === "" || asunto === "" || mensajeTexto === "") {
+            mostrarMensaje("Por favor, complete todos los campos.", "error");
+            return;
+        }
+
+        mostrarMensaje("✅ Mensaje enviado correctamente. Este formulario funciona como prototipo visual.", "ok");
+        document.querySelector("form").reset();
+    }
+
+    function inicializarSeguridad() {
+        document.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener("keydown", function (e) {
+            const key = e.key.toLowerCase();
+
+            if (
+                (e.ctrlKey && ["u", "s", "p"].includes(key)) ||
+                key === "f12"
+            ) {
+                e.preventDefault();
+            }
+        });
+    }
+
+    function inicializarMenuMovil() {
+        const toggle = document.getElementById("mobileToggle");
+        const navMenu = document.getElementById("navMenu");
+
+        toggle.addEventListener("click", function () {
+            navMenu.classList.toggle("menu-mobile-open");
+        });
+
+        document.addEventListener("click", function (e) {
+            if (!navMenu.contains(e.target) && !toggle.contains(e.target) && window.innerWidth <= 768) {
+                navMenu.classList.remove("menu-mobile-open");
+            }
+        });
+    }
+
+    function marcarPaginaActiva() {
+        document.querySelectorAll(".nav-link").forEach(link => {
+            const href = link.getAttribute("href");
+            if (window.location.pathname.endsWith(href)) {
+                link.classList.add("active");
+            } else {
+                link.classList.remove("active");
+            }
+        });
+    }
+
+    function init() {
+        inicializarSeguridad();
+        inicializarMenuMovil();
+        marcarPaginaActiva();
+    }
+
+    init();
+</script>
+
+</body>
+</html>
