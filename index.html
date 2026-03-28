@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Profesionales | Inicio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            background-attachment: fixed;
+            color: #f8fafc;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(120,119,198,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(15,15,35,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        .logo {
+    line-height: 1.2;
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+    border: 1px solid rgba(255, 204, 0, 0.3);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.logo span {
+    color: #facc15;
+}
+
+.logo:hover {
+    box-shadow: 0 0 25px rgba(255, 204, 0, 0.6);
+    transform: scale(1.05);
+}
+
+.logo span {
+    color: #000;
+}
+
+.logo span {
+    color: #facc15;
+}
+
+.logo:hover {
+    box-shadow: 0 0 25px rgba(255, 204, 0, 0.6);
+    transform: scale(1.05);
+}
+
+        .logo span {
+            background: linear-gradient(135deg, #facc15, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo small {
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .nav-menu li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-menu li a:hover {
+            color: #f8fafc;
+            background: rgba(250,204,21,0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(250,204,21,0.3);
+        }
+
+        .nav-menu li a.active {
+            background: linear-gradient(135deg, rgba(250,204,21,0.2), rgba(251,191,36,0.2));
+            color: #facc15;
+            box-shadow: 0 5px 20px rgba(250,204,21,0.3);
+        }
+
+        .nav-menu li a i {
+            font-size: 16px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #f8fafc;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .hero {
+            padding: 80px 0 60px 0;
+        }
+
+        .hero-box {
+            background: rgba(26,26,46,0.92);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 28px;
+            padding: 50px 40px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #facc15, #fbbf24, #f59e0b, #facc15);
+            animation: shimmer 4s infinite;
+            background-size: 200% 100%;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .hero-texto h1 {
+    font-size: 54px;
+    line-height: 1.1;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 20px;
+}
+
+        .hero-texto h1 span {
+    background: linear-gradient(135deg, #facc15, #f59e0b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+        .hero-texto p {
+            font-size: 20px;
+            color: #cbd5e1;
+            max-width: 700px;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .hero-botones {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #facc15 0%, #fbbf24 50%, #f59e0b 100%);
+            color: #111827;
+            box-shadow: 0 6px 20px rgba(250,204,21,0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 12px 35px rgba(250,204,21,0.6);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: #f8fafc;
+            box-shadow: 0 6px 20px rgba(75,85,99,0.4);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 12px 35px rgba(75,85,99,0.6);
+        }
+
+        .hero-panel {
+            background: rgba(30,30,50,0.92);
+            border: 2px solid rgba(250,204,21,0.2);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.35);
+        }
+
+        .hero-panel h3 {
+            color: #f8fafc;
+            margin-bottom: 22px;
+            font-size: 26px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .hero-panel h3 i {
+            color: #facc15;
+        }
+
+        .mini-datos {
+            display: grid;
+            gap: 15px;
+        }
+
+        .dato {
+            background: rgba(250,204,21,0.1);
+            border: 1px solid rgba(250,204,21,0.25);
+            border-radius: 18px;
+            padding: 18px 20px;
+            color: #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .dato:hover {
+            transform: translateX(6px);
+            box-shadow: 0 12px 30px rgba(250,204,21,0.15);
+        }
+
+        .dato strong {
+            color: #facc15;
+            display: block;
+            margin-bottom: 6px;
+            font-size: 16px;
+        }
+
+        section {
+            padding: 20px 0 70px 0;
+        }
+
+        .section-card {
+            background: rgba(30,30,50,0.92);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(250,204,21,0.2);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #facc15, #fbbf24, #f59e0b);
+            animation: shimmer 3s infinite;
+            background-size: 200% 100%;
+        }
+
+        .section-header {
+            padding: 30px 35px 20px 35px;
+            background: linear-gradient(135deg, rgba(250,204,21,0.08), rgba(251,191,36,0.05));
+            border-bottom: 1px solid rgba(250,204,21,0.15);
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 34px;
+            color: #f8fafc;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .section-header p {
+            color: #cbd5e1;
+            font-size: 18px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .section-body {
+            padding: 35px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: rgba(40,40,60,0.8);
+            border: 1px solid rgba(250,204,21,0.2);
+            border-radius: 22px;
+            padding: 28px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 55px rgba(250,204,21,0.2);
+            border-color: rgba(250,204,21,0.45);
+        }
+
+        .icono {
+            width: 58px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(250,204,21,0.18);
+            color: #facc15;
+            font-size: 24px;
+            border-radius: 16px;
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            color: #f8fafc;
+            margin-bottom: 12px;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .card p {
+            color: #cbd5e1;
+        }
+
+        .sobre-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .sobre-box {
+            background: rgba(40,40,60,0.8);
+            border: 1px solid rgba(250,204,21,0.2);
+            border-radius: 22px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .sobre-box:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 45px rgba(250,204,21,0.18);
+        }
+
+        .sobre-box h3 {
+            color: #f8fafc;
+            margin-bottom: 15px;
+            font-size: 26px;
+            font-weight: 800;
+        }
+
+        .sobre-box p {
+            color: #cbd5e1;
+            margin-bottom: 15px;
+        }
+
+        .lista {
+            list-style: none;
+            display: grid;
+            gap: 14px;
+        }
+
+        .lista li {
+            background: rgba(250,204,21,0.1);
+            border: 1px solid rgba(250,204,21,0.2);
+            border-radius: 16px;
+            padding: 15px 18px;
+            color: #e5e7eb;
+        }
+
+        .noticias {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .noticia {
+            background: rgba(40,40,60,0.8);
+            border: 1px solid rgba(250,204,21,0.2);
+            border-radius: 22px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .noticia:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 45px rgba(250,204,21,0.18);
+        }
+
+        .noticia span {
+            display: inline-block;
+            color: #facc15;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .noticia h4 {
+            color: #f8fafc;
+            margin-bottom: 10px;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .noticia p {
+            color: #cbd5e1;
+        }
+
+        .cta-box {
+            text-align: center;
+            background: rgba(26,26,46,0.92);
+            border: 2px solid rgba(250,204,21,0.25);
+            border-radius: 28px;
+            padding: 50px 30px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #facc15, #fbbf24, #f59e0b, #facc15);
+            animation: shimmer 4s infinite;
+            background-size: 200% 100%;
+        }
+
+        .cta-box h2 {
+            color: #f8fafc;
+            font-size: 38px;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .cta-box p {
+            color: #cbd5e1;
+            font-size: 18px;
+            max-width: 720px;
+            margin: 0 auto 25px auto;
+        }
+
+        footer {
+            background: rgba(15,15,35,0.95);
+            backdrop-filter: blur(20px);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .footer-grid h3 {
+            color: #facc15;
+            margin-bottom: 15px;
+        }
+
+        .footer-grid h4 {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .footer-grid p,
+        .footer-grid a {
+            color: #94a3b8;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .menu-mobile-open {
+            display: flex !important;
+            position: absolute;
+            top: 100%;
+            right: 20px;
+            left: 20px;
+            flex-direction: column;
+            background: rgba(15,15,35,0.98);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+        }
+
+        .menu-mobile-open li a {
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 200% 0; }
+            50% { background-position: 0 0; }
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid,
+            .sobre-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-texto h1 {
+                font-size: 42px;
+            }
+
+            .hero-texto p {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            nav {
+                position: relative;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-texto h1 {
+                font-size: 34px;
+            }
+
+            .section-header h2,
+            .cta-box h2 {
+                font-size: 28px;
+            }
+
+            .hero-box,
+            .section-body,
+            .cta-box {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="contenedor">
+        <a href="index.html" class="logo">
+            Servicios <span>Profesionales</span><br>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+    <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Inicio</a></li>
+    <li><a href="clientes.html" class="nav-link"><i class="fas fa-users"></i> Clientes</a></li>
+    <li><a href="productos.html" class="nav-link"><i class="fas fa-box"></i> Productos</a></li>
+    <li><a href="servicios.html" class="nav-link"><i class="fas fa-cogs"></i> Servicios</a></li>
+    <li><a href="contactos.html" class="nav-link"><i class="fas fa-envelope"></i> Contactos</a></li>
+    <li><a href="factura.html" class="nav-link"><i class="fas fa-file-invoice-dollar"></i> Factura</a></li>
+</ul>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="contenedor">
+        <div class="hero-box">
+            <div class="hero-grid">
+                <div class="hero-texto">
+                    <h1>Impulsamos tu empresa con <span>soluciones digitales</span> modernas</h1>
+                    <p>
+                        SUCESOS y MÁS desarrolla propuestas web creativas, organizadas y funcionales para mejorar la presencia digital,
+                        la gestión de clientes y la comunicación empresarial.
+                    </p>
+                    <div class="hero-botones">
+                        <a href="servicios.html" class="btn-action btn-primary">
+                            <i class="fas fa-cogs"></i> Ver servicios
+                        </a>
+                        <a href="contactos.html" class="btn-action btn-secondary">
+                            <i class="fas fa-envelope"></i> Contactar ahora
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-panel">
+                    <h3><i class="fas fa-chart-line"></i> Resumen del prototipo</h3>
+                    <div class="mini-datos">
+                        <div class="dato">
+                            <strong>Gestión de clientes</strong>
+                            Registro, visualización y administración básica desde la web.
+                        </div>
+                        <div class="dato">
+                            <strong>Diseño corporativo</strong>
+                            Interfaz amigable, moderna y preparada para una futura implementación real.
+                        </div>
+                        <div class="dato">
+                            <strong>Escalable</strong>
+                            El sistema puede ampliarse con base de datos, autenticación y panel administrativo.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="contenedor">
+        <div class="section-card">
+            <div class="section-header">
+                <h2>¿Qué ofrece este sitio web?</h2>
+                <p>
+                    Este prototipo fue diseñado para presentar una solución clara, visual y funcional para las necesidades iniciales de la empresa.
+                </p>
+            </div>
+            <div class="section-body">
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="icono"><i class="fas fa-users"></i></div>
+                        <h3>Clientes</h3>
+                        <p>Consulta, organización y simulación de gestión de clientes con un sistema visual más dinámico e interesante.</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="icono"><i class="fas fa-box"></i></div>
+                        <h3>Productos</h3>
+                        <p>Presentación estructurada de productos y soluciones para mostrar mejor la oferta comercial de la empresa.</p>
+                    </div>
+
+                    <div class="card">
+                        <div class="icono"><i class="fas fa-screwdriver-wrench"></i></div>
+                        <h3>Servicios</h3>
+                        <p>Descripción de servicios digitales, publicitarios y de soporte con un enfoque profesional y fácil de entender.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="section-header">
+                <h2>Sobre SUCESOS y MÁS</h2>
+                <p>
+                    Una propuesta empresarial orientada a fortalecer la presencia digital, la organización de información y la presentación de servicios de manera moderna.
+                </p>
+            </div>
+            <div class="section-body">
+                <div class="sobre-grid">
+                    <div class="sobre-box">
+                        <h3>Visión del proyecto</h3>
+                        <p>
+                            SUCESOS y MÁS busca ofrecer una estructura atractiva, clara y útil, donde el usuario pueda navegar fácilmente entre las secciones principales.
+                        </p>
+                        <p>
+                            El objetivo es presentar una base sólida para evolucionar este prototipo hacia una solución real, profesional y escalable.
+                        </p>
+                    </div>
+
+                    <div class="sobre-box">
+                        <h3>Ventajas del prototipo</h3>
+                        <ul class="lista">
+                            <li>Navegación simple e intuitiva.</li>
+                            <li>Diseño oscuro elegante y cómodo para la lectura.</li>
+                            <li>Secciones organizadas para clientes, productos, servicios y contacto.</li>
+                            <li>Base ideal para evolucionar hacia un sistema real.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="section-header">
+                <h2>Noticias y trabajos realizados</h2>
+                <p>
+                    Una sección pensada para mostrar avances, proyectos recientes y futuras implementaciones.
+                </p>
+            </div>
+            <div class="section-body">
+                <div class="noticias">
+                    <div class="noticia">
+                        <span>Proyecto web</span>
+                        <h4>Diseño de portal empresarial</h4>
+                        <p>Se construyó un prototipo web con enfoque corporativo, menú funcional y estructura preparada para expansión futura.</p>
+                    </div>
+
+                    <div class="noticia">
+                        <span>Publicidad digital</span>
+                        <h4>Organización de contenido</h4>
+                        <p>Se planteó una estructura clara para clientes, productos y servicios, facilitando la navegación y lectura de información.</p>
+                    </div>
+
+                    <div class="noticia">
+                        <span>Próxima fase</span>
+                        <h4>Escalabilidad del sistema</h4>
+                        <p>Se contempla la integración de base de datos, panel administrativo, hosting, dominio y mantenimiento continuo.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-box">
+            <h2>Una propuesta lista para crecer</h2>
+            <p>
+                Este sitio no solo cumple como prototipo visual, sino que también establece una base sólida para una futura implementación completa y profesional.
+            </p>
+
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="contenedor footer-grid">
+        <div>
+            <h3>SUCESOS y MÁS</h3>
+            <p>Soluciones digitales, organización empresarial y presencia web con una imagen moderna.</p>
+        </div>
+        <div>
+            <h4>Ubicación</h4>
+            <p>Avenida Central<br>David, Chiriquí<br>Panamá</p>
+        </div>
+        <div>
+            <h4>Contacto</h4>
+            <p><i class="fas fa-phone"></i> +507 6000-0000</p>
+            <p><i class="fas fa-envelope"></i> contacto@sucesosymas.com</p>
+        </div>
+        <div>
+            <h4>Navegación</h4>
+            <p><a href="clientes.html">Clientes</a></p>
+            <p><a href="productos.html">Productos</a></p>
+            <p><a href="servicios.html">Servicios</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 SUCESOS y MÁS - Todos los derechos reservados | Desarrollado con ❤️ en David, Chiriquí
+    </div>
+</footer>
+
+<script>
+    function inicializarSeguridad() {
+        document.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener("keydown", function (e) {
+            const key = e.key.toLowerCase();
+
+            if (
+                (e.ctrlKey && ["u", "s", "p"].includes(key)) ||
+                key === "f12"
+            ) {
+                e.preventDefault();
+            }
+        });
+    }
+
+    function inicializarMenuMovil() {
+        const toggle = document.getElementById("mobileToggle");
+        const navMenu = document.getElementById("navMenu");
+
+        toggle.addEventListener("click", function () {
+            navMenu.classList.toggle("menu-mobile-open");
+        });
+
+        document.addEventListener("click", function (e) {
+            if (!navMenu.contains(e.target) && !toggle.contains(e.target) && window.innerWidth <= 768) {
+                navMenu.classList.remove("menu-mobile-open");
+            }
+        });
+    }
+
+    function marcarPaginaActiva() {
+        document.querySelectorAll(".nav-link").forEach(link => {
+            const href = link.getAttribute("href");
+            if (window.location.pathname.endsWith(href)) {
+                link.classList.add("active");
+            } else {
+                link.classList.remove("active");
+            }
+        });
+    }
+
+    function init() {
+        inicializarSeguridad();
+        inicializarMenuMovil();
+        marcarPaginaActiva();
+    }
+
+    init();
+</script>
+
+</body>
+</html>

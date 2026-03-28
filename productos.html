@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Profesionales | Productos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            background-attachment: fixed;
+            color: #f8fafc;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(120,119,198,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(15,15,35,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        .logo {
+    line-height: 1.2;
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+    border: 1px solid rgba(255, 204, 0, 0.3);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+        .logo span {
+            background: linear-gradient(135deg, #facc15, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo small {
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .nav-menu li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-menu li a:hover {
+            color: #f8fafc;
+            background: rgba(250,204,21,0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(250,204,21,0.3);
+        }
+
+        .nav-menu li a.active {
+            background: linear-gradient(135deg, rgba(250,204,21,0.2), rgba(251,191,36,0.2));
+            color: #facc15;
+            box-shadow: 0 5px 20px rgba(250,204,21,0.3);
+        }
+
+        .nav-menu li a i {
+            font-size: 16px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #f8fafc;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .productos-hero {
+            padding: 80px 0 60px 0;
+            text-align: center;
+        }
+
+        .productos-hero-box {
+            background: rgba(26,26,46,0.92);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 28px;
+            padding: 50px 40px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .productos-hero-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #facc15, #fbbf24, #f59e0b, #facc15);
+            animation: shimmer 4s infinite;
+            background-size: 200% 100%;
+        }
+
+        .productos-hero-box h1 {
+    font-size: 48px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+        .productos-hero-box p {
+            font-size: 20px;
+            color: #cbd5e1;
+            max-width: 820px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        section {
+            padding: 20px 0 70px 0;
+        }
+
+        .section-card {
+            background: rgba(30,30,50,0.92);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(250,204,21,0.2);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #facc15, #fbbf24, #f59e0b);
+            animation: shimmer 3s infinite;
+            background-size: 200% 100%;
+        }
+
+        .section-header {
+            padding: 30px 35px 20px 35px;
+            background: linear-gradient(135deg, rgba(250,204,21,0.08), rgba(251,191,36,0.05));
+            border-bottom: 1px solid rgba(250,204,21,0.15);
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 34px;
+            color: #f8fafc;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .section-header p {
+            color: #cbd5e1;
+            font-size: 18px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .section-body {
+            padding: 35px;
+        }
+
+        .hero-mini {
+            display: grid;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .mini-card {
+            background: rgba(250,204,21,0.1);
+            border: 1px solid rgba(250,204,21,0.25);
+            border-radius: 18px;
+            padding: 18px 20px;
+            color: #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .mini-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 12px 30px rgba(250,204,21,0.16);
+        }
+
+        .mini-card strong {
+            color: #facc15;
+            display: block;
+            margin-bottom: 6px;
+            font-size: 16px;
+        }
+
+        .filtros {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .tag {
+            background: rgba(40,40,60,0.85);
+            color: #e5e7eb;
+            border: 1px solid rgba(250,204,21,0.2);
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(250,204,21,0.15);
+            border-color: rgba(250,204,21,0.45);
+        }
+
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .producto {
+            background: rgba(40,40,60,0.8);
+            border: 1px solid rgba(250,204,21,0.2);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+        }
+
+        .producto:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 55px rgba(250,204,21,0.2);
+            border-color: rgba(250,204,21,0.45);
+        }
+
+        .producto-top {
+            height: 170px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 52px;
+            background: linear-gradient(135deg, rgba(250,204,21,0.15), rgba(255,255,255,0.03));
+            color: #facc15;
+            border-bottom: 1px solid rgba(250,204,21,0.15);
+        }
+
+        .producto-body {
+            padding: 24px;
+        }
+
+        .producto-body h3 {
+            color: #f8fafc;
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .producto-body p {
+            color: #cbd5e1;
+            margin-bottom: 18px;
+        }
+
+        .producto-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .precio {
+            font-size: 26px;
+            font-weight: 800;
+            color: #facc15;
+        }
+
+        .btn-action {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+            color: #f8fafc;
+            box-shadow: 0 6px 20px rgba(75,85,99,0.4);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 12px 35px rgba(75,85,99,0.6);
+        }
+
+        .extras {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
+        }
+
+        .extra-box {
+            background: rgba(40,40,60,0.8);
+            border: 1px solid rgba(250,204,21,0.2);
+            border-radius: 22px;
+            padding: 26px;
+            transition: all 0.3s ease;
+        }
+
+        .extra-box:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 45px rgba(250,204,21,0.18);
+        }
+
+        .extra-box h3 {
+            color: #f8fafc;
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .extra-box p {
+            color: #cbd5e1;
+        }
+
+        footer {
+            background: rgba(15,15,35,0.95);
+            backdrop-filter: blur(20px);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .footer-grid h3 {
+            color: #facc15;
+            margin-bottom: 15px;
+        }
+
+        .footer-grid h4 {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .footer-grid p,
+        .footer-grid a {
+            color: #94a3b8;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .menu-mobile-open {
+            display: flex !important;
+            position: absolute;
+            top: 100%;
+            right: 20px;
+            left: 20px;
+            flex-direction: column;
+            background: rgba(15,15,35,0.98);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+        }
+
+        .menu-mobile-open li a {
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 200% 0; }
+            50% { background-position: 0 0; }
+        }
+
+        @media (max-width: 900px) {
+            .productos-hero-box h1 {
+                font-size: 38px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            nav {
+                position: relative;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contenedor {
+                padding: 0 15px;
+            }
+
+            .productos-hero-box {
+                padding: 35px 20px;
+            }
+
+            .productos-hero-box h1 {
+                font-size: 28px;
+            }
+
+            .section-body {
+                padding: 25px 20px;
+            }
+
+            .section-header h2 {
+                font-size: 28px;
+            }
+
+            .producto-footer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-action {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="contenedor">
+        <a href="index.html" class="logo">
+           Servicios <span>Profesionales</span><br>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+    <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Inicio</a></li>
+    <li><a href="clientes.html" class="nav-link"><i class="fas fa-users"></i> Clientes</a></li>
+    <li><a href="productos.html" class="nav-link"><i class="fas fa-box"></i> Productos</a></li>
+    <li><a href="servicios.html" class="nav-link"><i class="fas fa-cogs"></i> Servicios</a></li>
+    <li><a href="contactos.html" class="nav-link"><i class="fas fa-envelope"></i> Contactos</a></li>
+    <li><a href="factura.html" class="nav-link"><i class="fas fa-file-invoice-dollar"></i> Factura</a></li>
+</ul>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+</header>
+
+<section class="productos-hero">
+    <div class="contenedor">
+        <div class="productos-hero-box">
+            <h1>
+                <i class="fas fa-box-open fa-2x"></i>
+                Catálogo de productos digitales
+            </h1>
+            <p>
+                En esta sección se presentan distintas soluciones comerciales y digitales que pueden
+                ayudar a fortalecer la imagen, organización y visibilidad de una empresa moderna.
+            </p>
+
+            <div class="hero-mini">
+                <div class="mini-card">
+                    <strong>Variedad</strong>
+                    Productos pensados para promoción, presencia web y contenido visual.
+                </div>
+                <div class="mini-card">
+                    <strong>Flexibilidad</strong>
+                    Cada opción puede adaptarse según el tipo de negocio y su necesidad.
+                </div>
+                <div class="mini-card">
+                    <strong>Escalabilidad</strong>
+                    El catálogo puede crecer con nuevas categorías y personalizaciones.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="contenedor">
+        <div class="section-card">
+            <div class="section-header">
+                <h2>Nuestros productos</h2>
+                <p>
+                    Una selección más amplia y variada para que la empresa pueda proyectar
+                    diferentes tipos de soluciones con una presentación profesional.
+                </p>
+            </div>
+
+            <div class="section-body">
+                <div class="filtros">
+                    <div class="tag">Diseño web</div>
+                    <div class="tag">Publicidad</div>
+                    <div class="tag">Contenido digital</div>
+                    <div class="tag">Branding</div>
+                    <div class="tag">Soporte visual</div>
+                </div>
+
+                <div class="grid-productos">
+                    <div class="producto">
+                        <div class="producto-top">🌐</div>
+                        <div class="producto-body">
+                            <h3>Sitio web corporativo</h3>
+                            <p>Diseño de página institucional con secciones informativas, menú funcional y estilo profesional.</p>
+                            <div class="producto-footer">
+                                <span class="precio">$250</span>
+                                <a href="contactos.html" class="btn-action btn-secondary">
+                                    <i class="fas fa-paper-plane"></i> Solicitar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="producto">
+                        <div class="producto-top">📰</div>
+                        <div class="producto-body">
+                            <h3>Portal de noticias</h3>
+                            <p>Estructura pensada para medios, publicaciones, novedades y difusión de contenido digital.</p>
+                            <div class="producto-footer">
+                                <span class="precio">$220</span>
+                                <a href="contactos.html" class="btn-action btn-secondary">
+                                    <i class="fas fa-paper-plane"></i> Solicitar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="producto">
+                        <div class="producto-top">🖼️</div>
+                        <div class="producto-body">
+                            <h3>Banner promocional</h3>
+                            <p>Pieza gráfica para campañas, anuncios, promociones y publicaciones en redes o páginas web.</p>
+                            <div class="producto-footer">
+                                <span class="precio">$35</span>
+                                <a href="contactos.html" class="btn-action btn-secondary">
+                                    <i class="fas fa-paper-plane"></i> Solicitar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="producto">
+                        <div class="producto-top">📱</div>
+                        <div class="producto-body">
+                            <h3>Contenido para redes</h3>
+                            <p>Diseño de publicaciones visuales para fortalecer la presencia digital del negocio.</p>
+                            <div class="producto-footer">
+                                <span class="precio">$60</span>
+                                <a href="contactos.html" class="btn-action btn-secondary">
+                                    <i class="fas fa-paper-plane"></i> Solicitar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="producto">
+                        <div class="producto-top">📇</div>
+                        <div class="producto-body">
+                            <h3>Identidad visual básica</h3>
+                            <p>Conjunto inicial de elementos visuales para dar coherencia a la imagen empresarial.</p>
+                            <div class="producto-footer">
+                                <span class="precio">$90</span>
+                                <a href="contactos.html" class="btn-action btn-secondary">
+                                    <i class="fas fa-paper-plane"></i> Solicitar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="producto">
+                        <div class="producto-top">📂</div>
+                        <div class="producto-body">
+                            <h3>Catálogo digital</h3>
+                            <p>Presentación clara y elegante de productos o servicios con orientación comercial.</p>
+                            <div class="producto-footer">
+                                <span class="precio">$120</span>
+                                <a href="contactos.html" class="btn-action btn-secondary">
+                                    <i class="fas fa-paper-plane"></i> Solicitar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="producto">
+                        <div class="producto-top">🎯</div>
+                        <div class="producto-body">
+                            <h3>Landing page promocional</h3>
+                            <p>Una página enfocada en captar atención para campañas, eventos o lanzamientos.</p>
+                            <div class="producto-footer">
+                                <span class="precio">$140</span>
+                                <a href="contactos.html" class="btn-action btn-secondary">
+                                    <i class="fas fa-paper-plane"></i> Solicitar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="producto">
+                        <div class="producto-top">🛍️</div>
+                        <div class="producto-body">
+                            <h3>Catálogo comercial premium</h3>
+                            <p>Versión más amplia con mejor organización visual y enfoque en conversión comercial.</p>
+                            <div class="producto-footer">
+                                <span class="precio">$180</span>
+                                <a href="contactos.html" class="btn-action btn-secondary">
+                                    <i class="fas fa-paper-plane"></i> Solicitar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="section-header">
+                <h2>Ventajas adicionales</h2>
+                <p>
+                    Elementos pensados para que el catálogo no solo se vea atractivo,
+                    sino que también tenga proyección de crecimiento futuro.
+                </p>
+            </div>
+
+            <div class="section-body">
+                <div class="extras">
+                    <div class="extra-box">
+                        <h3>Personalización por empresa</h3>
+                        <p>Cada producto puede ajustarse en colores, contenido, estructura y estilo según la identidad de la marca.</p>
+                    </div>
+                    <div class="extra-box">
+                        <h3>Compatibilidad futura</h3>
+                        <p>Las propuestas están pensadas para crecer luego con formularios reales, bases de datos o paneles administrativos.</p>
+                    </div>
+                    <div class="extra-box">
+                        <h3>Enfoque visual moderno</h3>
+                        <p>Todos los productos pueden presentarse con un estilo corporativo más profesional y agradable a la lectura.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="contenedor footer-grid">
+        <div>
+            <h3>SUCESOS y MÁS</h3>
+            <p>Catálogo de soluciones y productos digitales con enfoque moderno y profesional.</p>
+        </div>
+
+        <div>
+            <h4>Ubicación</h4>
+            <p>Avenida Central<br>David, Chiriquí<br>Panamá</p>
+        </div>
+
+        <div>
+            <h4>Contacto</h4>
+            <p><i class="fas fa-phone"></i> +507 6000-0000</p>
+            <p><i class="fas fa-envelope"></i> contacto@serviciosprofesionales.com</p>
+        </div>
+
+        <div>
+            <h4>Navegación</h4>
+            <p><a href="clientes.html">Clientes</a></p>
+            <p><a href="servicios.html">Servicios</a></p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        &copy; 2026 SUCESOS y MÁS - Todos los derechos reservados | Desarrollado con ❤️ en David, Chiriquí
+    </div>
+</footer>
+
+<script>
+    function inicializarSeguridad() {
+        document.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener("keydown", function (e) {
+            const key = e.key.toLowerCase();
+
+            if (
+                (e.ctrlKey && ["u", "s", "p"].includes(key)) ||
+                key === "f12"
+            ) {
+                e.preventDefault();
+            }
+        });
+    }
+
+    function inicializarMenuMovil() {
+        const toggle = document.getElementById("mobileToggle");
+        const navMenu = document.getElementById("navMenu");
+
+        toggle.addEventListener("click", function () {
+            navMenu.classList.toggle("menu-mobile-open");
+        });
+
+        document.addEventListener("click", function (e) {
+            if (!navMenu.contains(e.target) && !toggle.contains(e.target) && window.innerWidth <= 768) {
+                navMenu.classList.remove("menu-mobile-open");
+            }
+        });
+    }
+
+    function marcarPaginaActiva() {
+        document.querySelectorAll(".nav-link").forEach(link => {
+            const href = link.getAttribute("href");
+            if (window.location.pathname.endsWith(href)) {
+                link.classList.add("active");
+            } else {
+                link.classList.remove("active");
+            }
+        });
+    }
+
+    function init() {
+        inicializarSeguridad();
+        inicializarMenuMovil();
+        marcarPaginaActiva();
+    }
+
+    init();
+</script>
+
+</body>
+</html>
