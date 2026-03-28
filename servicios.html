@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Profesionales | Servicios</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            background-attachment: fixed;
+            color: #f8fafc;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(120,119,198,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(15,15,35,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        .logo {
+    line-height: 1.2;
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0f0f23, #1a1a2e);
+    border: 1px solid rgba(255, 204, 0, 0.3);
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+        .logo span {
+            background: linear-gradient(135deg, #facc15, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo small {
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .nav-menu li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-menu li a:hover {
+            color: #f8fafc;
+            background: rgba(250,204,21,0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(250,204,21,0.3);
+        }
+
+        .nav-menu li a.active {
+            background: linear-gradient(135deg, rgba(250,204,21,0.2), rgba(251,191,36,0.2));
+            color: #facc15;
+            box-shadow: 0 5px 20px rgba(250,204,21,0.3);
+        }
+
+        .nav-menu li a i {
+            font-size: 16px;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #f8fafc;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .servicios-hero {
+            padding: 80px 0 60px 0;
+            text-align: center;
+        }
+
+        .servicios-hero-box {
+            background: rgba(26,26,46,0.92);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 28px;
+            padding: 50px 40px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.45);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .servicios-hero-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #facc15, #fbbf24, #f59e0b, #facc15);
+            animation: shimmer 4s infinite;
+            background-size: 200% 100%;
+        }
+
+        .productos-hero-box h1 {
+    font-size: 48px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+        .servicios-hero-box p {
+            font-size: 20px;
+            color: #cbd5e1;
+            max-width: 820px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        section {
+            padding: 20px 0 70px 0;
+        }
+
+        .section-card {
+            background: rgba(30,30,50,0.92);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(250,204,21,0.2);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #facc15, #fbbf24, #f59e0b);
+            animation: shimmer 3s infinite;
+            background-size: 200% 100%;
+        }
+
+        .section-header {
+            padding: 30px 35px 20px 35px;
+            background: linear-gradient(135deg, rgba(250,204,21,0.08), rgba(251,191,36,0.05));
+            border-bottom: 1px solid rgba(250,204,21,0.15);
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-size: 34px;
+            color: #f8fafc;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .section-header p {
+            color: #cbd5e1;
+            font-size: 18px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .section-body {
+            padding: 35px;
+        }
+
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .servicio-card {
+            background: rgba(40,40,60,0.8);
+            border: 1px solid rgba(250,204,21,0.2);
+            border-radius: 22px;
+            padding: 28px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 55px rgba(250,204,21,0.2);
+            border-color: rgba(250,204,21,0.45);
+        }
+
+        .icono {
+            width: 58px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(250,204,21,0.18);
+            color: #facc15;
+            font-size: 24px;
+            border-radius: 16px;
+            margin-bottom: 18px;
+        }
+
+        .servicio-card h3 {
+            color: #f8fafc;
+            margin-bottom: 12px;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .servicio-card p {
+            color: #cbd5e1;
+            margin-bottom: 16px;
+        }
+
+        .servicio-card ul {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+            padding-left: 0;
+        }
+
+        .servicio-card ul li {
+            background: rgba(250,204,21,0.1);
+            border: 1px solid rgba(250,204,21,0.18);
+            border-radius: 14px;
+            padding: 12px 14px;
+            color: #e5e7eb;
+        }
+
+        .bloque-doble {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+        }
+
+        .panel-box {
+            background: rgba(40,40,60,0.8);
+            border: 1px solid rgba(250,204,21,0.2);
+            border-radius: 22px;
+            padding: 28px;
+            transition: all 0.3s ease;
+        }
+
+        .panel-box:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 45px rgba(250,204,21,0.18);
+        }
+
+        .panel-box h3 {
+            color: #f8fafc;
+            margin-bottom: 15px;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .panel-box p {
+            color: #cbd5e1;
+            margin-bottom: 16px;
+        }
+
+        .lista {
+            list-style: none;
+            display: grid;
+            gap: 14px;
+        }
+
+        .lista li {
+            background: rgba(250,204,21,0.1);
+            border: 1px solid rgba(250,204,21,0.2);
+            border-radius: 16px;
+            padding: 15px 18px;
+            color: #e5e7eb;
+        }
+
+        .planes {
+            display: grid;
+            gap: 18px;
+        }
+
+        .plan {
+            background: rgba(40,40,60,0.8);
+            border: 1px solid rgba(250,204,21,0.22);
+            border-radius: 22px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .plan:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 45px rgba(250,204,21,0.18);
+        }
+
+        .plan h3 {
+            color: #f8fafc;
+            margin-bottom: 8px;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .precio {
+            color: #facc15;
+            font-weight: 800;
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .plan p {
+            color: #cbd5e1;
+        }
+
+        .cta-box {
+            text-align: center;
+            background: rgba(26,26,46,0.92);
+            border: 2px solid rgba(250,204,21,0.25);
+            border-radius: 28px;
+            padding: 50px 30px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #facc15, #fbbf24, #f59e0b, #facc15);
+            animation: shimmer 4s infinite;
+            background-size: 200% 100%;
+        }
+
+        .cta-box h2 {
+            color: #f8fafc;
+            font-size: 38px;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .cta-box p {
+            color: #cbd5e1;
+            font-size: 18px;
+            max-width: 720px;
+            margin: 0 auto 25px auto;
+        }
+
+        .btn-action {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #facc15 0%, #fbbf24 50%, #f59e0b 100%);
+            color: #111827;
+            box-shadow: 0 6px 20px rgba(250,204,21,0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.04);
+            box-shadow: 0 12px 35px rgba(250,204,21,0.6);
+        }
+
+        footer {
+            background: rgba(15,15,35,0.95);
+            backdrop-filter: blur(20px);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .footer-grid h3 {
+            color: #facc15;
+            margin-bottom: 15px;
+        }
+
+        .footer-grid h4 {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .footer-grid p,
+        .footer-grid a {
+            color: #94a3b8;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .menu-mobile-open {
+            display: flex !important;
+            position: absolute;
+            top: 100%;
+            right: 20px;
+            left: 20px;
+            flex-direction: column;
+            background: rgba(15,15,35,0.98);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+        }
+
+        .menu-mobile-open li a {
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 200% 0; }
+            50% { background-position: 0 0; }
+        }
+
+        @media (max-width: 900px) {
+            .bloque-doble {
+                grid-template-columns: 1fr;
+            }
+
+            .servicios-hero-box h1 {
+                font-size: 38px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            nav {
+                position: relative;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contenedor {
+                padding: 0 15px;
+            }
+
+            .servicios-hero-box {
+                padding: 35px 20px;
+            }
+
+            .servicios-hero-box h1 {
+                font-size: 28px;
+            }
+
+            .section-body,
+            .cta-box {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .section-header h2,
+            .cta-box h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="contenedor">
+        <a href="index.html" class="logo">
+            Servicios <span>Profesionales</span><br>
+        </a>
+
+        <ul class="nav-menu" id="navMenu">
+    <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Inicio</a></li>
+    <li><a href="clientes.html" class="nav-link"><i class="fas fa-users"></i> Clientes</a></li>
+    <li><a href="productos.html" class="nav-link"><i class="fas fa-box"></i> Productos</a></li>
+    <li><a href="servicios.html" class="nav-link"><i class="fas fa-cogs"></i> Servicios</a></li>
+    <li><a href="contactos.html" class="nav-link"><i class="fas fa-envelope"></i> Contactos</a></li>
+    <li><a href="factura.html" class="nav-link"><i class="fas fa-file-invoice-dollar"></i> Factura</a></li>
+</ul>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+</header>
+
+<section class="servicios-hero">
+    <div class="contenedor">
+        <div class="servicios-hero-box">
+            <h1>
+                <i class="fas fa-screwdriver-wrench fa-2x"></i>
+                Servicios diseñados para crecer
+            </h1>
+            <p>
+                Una propuesta de servicios más variada y atractiva, pensada para mostrar distintas
+                áreas de apoyo digital, visual y empresarial con una presentación moderna.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="contenedor">
+        <div class="section-card">
+            <div class="section-header">
+                <h2>Catálogo de servicios</h2>
+                <p>
+                    Servicios presentados de forma visual, clara y profesional para que el sitio web
+                    se vea más completo, funcional y preparado para crecer.
+                </p>
+            </div>
+            <div class="section-body">
+                <div class="servicios-grid">
+                    <div class="servicio-card">
+                        <div class="icono"><i class="fas fa-laptop-code"></i></div>
+                        <h3>Diseño y desarrollo web</h3>
+                        <p>Creación de páginas informativas, corporativas o promocionales con estructura clara y navegación moderna.</p>
+                        <ul>
+                            <li>Páginas institucionales</li>
+                            <li>Landing pages</li>
+                            <li>Catálogos digitales</li>
+                        </ul>
+                    </div>
+
+                    <div class="servicio-card">
+                        <div class="icono"><i class="fas fa-bullhorn"></i></div>
+                        <h3>Publicidad digital</h3>
+                        <p>Diseño de propuestas visuales para campañas, anuncios, promociones y comunicación empresarial.</p>
+                        <ul>
+                            <li>Banners promocionales</li>
+                            <li>Campañas visuales</li>
+                            <li>Difusión informativa</li>
+                        </ul>
+                    </div>
+
+                    <div class="servicio-card">
+                        <div class="icono"><i class="fas fa-puzzle-piece"></i></div>
+                        <h3>Organización de contenido</h3>
+                        <p>Estructuración de información para que el sitio sea más claro, útil y amigable para el usuario.</p>
+                        <ul>
+                            <li>Jerarquía visual</li>
+                            <li>Textos organizados</li>
+                            <li>Secciones funcionales</li>
+                        </ul>
+                    </div>
+
+                    <div class="servicio-card">
+                        <div class="icono"><i class="fas fa-tools"></i></div>
+                        <h3>Soporte y mantenimiento</h3>
+                        <p>Revisión general del sitio, enlaces, contenido y mejoras continuas en futuras fases del proyecto.</p>
+                        <ul>
+                            <li>Corrección de errores</li>
+                            <li>Actualización de contenido</li>
+                            <li>Mejoras visuales</li>
+                        </ul>
+                    </div>
+
+                    <div class="servicio-card">
+                        <div class="icono"><i class="fas fa-palette"></i></div>
+                        <h3>Diseño de identidad visual</h3>
+                        <p>Propuestas estéticas para fortalecer la imagen de la empresa y darle coherencia a su presentación digital.</p>
+                        <ul>
+                            <li>Paleta de colores</li>
+                            <li>Estilo gráfico</li>
+                            <li>Presentación corporativa</li>
+                        </ul>
+                    </div>
+
+                    <div class="servicio-card">
+                        <div class="icono"><i class="fas fa-cloud"></i></div>
+                        <h3>Asesoría en hosting y dominio</h3>
+                        <p>Orientación para publicar el sitio en internet y prepararlo para una implementación real.</p>
+                        <ul>
+                            <li>Elección de dominio</li>
+                            <li>Hosting local o internacional</li>
+                            <li>Puesta en línea</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-card">
+            <div class="section-header">
+                <h2>Propuesta de valor y planes</h2>
+                <p>
+                    El sitio fue planteado como una solución modular que hoy funciona como prototipo,
+                    pero que también puede evolucionar hacia una implementación real.
+                </p>
+            </div>
+            <div class="section-body">
+                <div class="bloque-doble">
+                    <div class="panel-box">
+                        <h3>¿Por qué elegir esta propuesta?</h3>
+                        <p>
+                            Su estructura visual, clara y modular permite presentarlo frente a un profesor,
+                            cliente o empresa como una base seria y escalable.
+                        </p>
+                        <ul class="lista">
+                            <li>Diseño visual atractivo y legible.</li>
+                            <li>Estructura adaptable a distintos tipos de empresa.</li>
+                            <li>Base útil para integrar funciones más avanzadas.</li>
+                            <li>Propuesta clara para exponer frente al profesor o cliente.</li>
+                        </ul>
+                    </div>
+
+                    <div class="planes">
+                        <div class="plan">
+                            <h3>Plan básico</h3>
+                            <div class="precio">$150</div>
+                            <p>Incluye estructura web inicial, páginas principales y diseño corporativo simple.</p>
+                        </div>
+
+                        <div class="plan">
+                            <h3>Plan intermedio</h3>
+                            <div class="precio">$250</div>
+                            <p>Incluye más secciones, contenido ampliado y propuesta visual mejorada.</p>
+                        </div>
+
+                        <div class="plan">
+                            <h3>Plan futuro premium</h3>
+                            <div class="precio">$400+</div>
+                            <p>Preparado para base de datos, formularios reales, panel de administración y hosting activo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-box">
+            <h2>Servicios listos para evolucionar</h2>
+            <p>
+                Esta propuesta combina presentación, organización y potencial de crecimiento,
+                ideal para demostrar creatividad y visión de desarrollo.
+            </p>
+            <a href="contactos.html" class="btn-action btn-primary">
+                <i class="fas fa-envelope"></i> Solicitar información
+            </a>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="contenedor footer-grid">
+        <div>
+            <h3>SUCESOS y MÁS</h3>
+            <p>Servicios digitales y corporativos con una imagen moderna, clara y funcional.</p>
+        </div>
+
+        <div>
+            <h4>Ubicación</h4>
+            <p>Avenida Central<br>David, Chiriquí<br>Panamá</p>
+        </div>
+
+        <div>
+            <h4>Contacto</h4>
+            <p><i class="fas fa-phone"></i> +507 6000-0000</p>
+            <p><i class="fas fa-envelope"></i> contacto@serviciosprofesionales.com</p>
+        </div>
+
+        <div>
+            <h4>Navegación</h4>
+            <p><a href="productos.html">Productos</a></p>
+            <p><a href="clientes.html">Clientes</a></p>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        &copy; 2026 SUCESOS y MÁS - Todos los derechos reservados | Desarrollado con ❤️ en David, Chiriquí
+    </div>
+</footer>
+
+<script>
+    function inicializarSeguridad() {
+        document.addEventListener("contextmenu", function (e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener("keydown", function (e) {
+            const key = e.key.toLowerCase();
+
+            if (
+                (e.ctrlKey && ["u", "s", "p"].includes(key)) ||
+                key === "f12"
+            ) {
+                e.preventDefault();
+            }
+        });
+    }
+
+    function inicializarMenuMovil() {
+        const toggle = document.getElementById("mobileToggle");
+        const navMenu = document.getElementById("navMenu");
+
+        toggle.addEventListener("click", function () {
+            navMenu.classList.toggle("menu-mobile-open");
+        });
+
+        document.addEventListener("click", function (e) {
+            if (!navMenu.contains(e.target) && !toggle.contains(e.target) && window.innerWidth <= 768) {
+                navMenu.classList.remove("menu-mobile-open");
+            }
+        });
+    }
+
+    function marcarPaginaActiva() {
+        document.querySelectorAll(".nav-link").forEach(link => {
+            const href = link.getAttribute("href");
+            if (window.location.pathname.endsWith(href)) {
+                link.classList.add("active");
+            } else {
+                link.classList.remove("active");
+            }
+        });
+    }
+
+    function init() {
+        inicializarSeguridad();
+        inicializarMenuMovil();
+        marcarPaginaActiva();
+    }
+
+    init();
+</script>
+
+</body>
+</html>
